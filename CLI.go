@@ -13,6 +13,7 @@ func input() (int, []float64, []float64) {
 	var numberOfElements int
 	var dataX, dataY []float64
 	var lineX, lineY []string
+
 	fmt.Print(INFO)
 
 	fmt.Println(CHOOSE_INPUT)
@@ -35,6 +36,10 @@ func input() (int, []float64, []float64) {
 		lineX = strings.Split(scanner.Text(), " ")
 		scanner.Scan()
 		lineY = strings.Split(scanner.Text(), " ")
+		if (len(lineX) != numberOfElements) || (len(lineY) != numberOfElements) {
+			fmt.Println(INPUT_ERR)
+			os.Exit(0)
+		}
 		for i := 0; i < numberOfElements; i++ {
 			dataX[i], _ = strconv.ParseFloat(lineX[i], 64)
 			dataY[i], _ = strconv.ParseFloat(lineY[i], 64)
@@ -91,4 +96,5 @@ func output() (*bufio.Writer, *os.File) {
 		return bufio.NewWriter(f), f
 	}
 	return bufio.NewWriter(os.Stdout), os.Stdout
+
 }

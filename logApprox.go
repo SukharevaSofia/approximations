@@ -9,7 +9,7 @@ func logApprox(n int, dataX, dataY []float64) Data {
 	}
 	_, linearApproximation := linealApprox(n, logX, dataY)
 	bLin, aLin := linearApproximation.coefficents[0], linearApproximation.coefficents[1]
-	a := math.Exp(aLin)
+	a := aLin
 	b := bLin
 	f := func(element float64) float64 { return a*math.Log(element) + b }
 	coefficents := []float64{a, b}
