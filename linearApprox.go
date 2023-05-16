@@ -13,7 +13,6 @@ func linealApprox(n int, dataX, dataY []float64) (float64, Data) {
 
 	answKramer := GetKramer([][]float64{{sxx, sx}, {sx, float64(n)}}, []float64{sxy, sy})
 
-	//a & b are coefficents of the y=ax+b
 	a, b := answKramer[0], answKramer[1]
 	coefficents := []float64{a, b}
 	f := func(element float64) float64 { return a*element + b }

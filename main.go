@@ -15,6 +15,9 @@ func main() {
 		if dataX[i] <= 0 {
 			isPositive = false
 		}
+		if dataY[i] <= 0 {
+			isPositive = false
+		}
 		break
 	}
 	_, whereToWrite := output()
@@ -158,14 +161,12 @@ func smallOutput(n int, dataX, dataY []float64, whereToWrite *os.File) {
 	pearsonCoeff, linearApproximation := linealApprox(n, dataX, dataY)
 	quadraticApproximation := quadraticApprox(n, dataX, dataY)
 	cubeApproximation := cubeApprox(n, dataX, dataY)
-	expApproximation := expApprox(n, dataX, dataY)
 	fmt.Fprintln(whereToWrite, CANT_OUTPUT)
 
 	allApproxs := []Data{
 		linearApproximation,
 		quadraticApproximation,
 		cubeApproximation,
-		expApproximation,
 	}
 
 	bestApprox := allApproxs[0]
@@ -253,11 +254,6 @@ func smallOutput(n int, dataX, dataY []float64, whereToWrite *os.File) {
 				Name:    CUBIC,
 				XValues: allApproxs[2].xData,
 				YValues: allApproxs[2].phi,
-			},
-			chart.ContinuousSeries{
-				Name:    EXP,
-				XValues: allApproxs[3].xData,
-				YValues: allApproxs[3].phi,
 			},
 		},
 	}
